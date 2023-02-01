@@ -4,6 +4,10 @@ For the detail about quirc, please see the github repository below.
 
 https://github.com/dlbeer/quirc
 
+And I also refer the alvarowolfx's repository to improve the performance.
+
+https://github.com/alvarowolfx/ESP32QRCodeReader
+
 Here's the example sketch for Spresense Arduino using the camera. 
 
 ```cpp
