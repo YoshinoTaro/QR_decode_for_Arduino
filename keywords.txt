@@ -1,0 +1,13 @@
+#Class
+quirc		KEYWORD1
+quirc_code	KEYWORD1
+quirc_data	KEYWORD1
+
+
+# Function
+quirc_version	KEYWORD2
+quirc_new		KEYWORD2
+quirc_destroy	KEYWORD2
+quirc_resize	KEYWORD2
+quirc_end		KEYWORD2
+
