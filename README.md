@@ -31,10 +31,7 @@ void CamCB(CamImage img) {
   }
   quirc_end(qr);
   
-  int num_codes;
-  int i;
-  
-  num_codes = quirc_count(qr);
+  int num_codes = quirc_count(qr);
   for (int i = 0; i < num_codes; i++) {
     quirc_decode_error_t err;
     quirc_extract(qr, i, &code);
