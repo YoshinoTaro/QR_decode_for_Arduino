@@ -34,7 +34,7 @@ void CamCB(CamImage img) {
   }
   // copy gray scale image
   uint16_t* rgb_image = (uint16_t*)img.getImgBuff();
-  for (int n = 0; n < w*h; ++n) {
+  for (int n = 0; n < w * h; ++n) {
     uint16_t pix = rgb_image[n];
     image[n] = (pix & 0x7E0) >> 5; // extract g image
   }
@@ -51,8 +51,14 @@ void CamCB(CamImage img) {
     err = quirc_decode(&code, &data);
     if (err)
       printf("DECODE FAILED: %s\n", quirc_strerror(err));
-    else
+    else {
       printf("Data: %s\n", data.payload);
+
+#ifdef USE_LCD
+      // QR Codeを検知した場合のみ枠線を描画する
+      draw_polygon_4(&code);
+#endif
+    }
   }
 }
 
@@ -82,4 +88,11 @@ void setup() {
   }
 }
 
-void loop() { }
+void loop() {}
+
+//四辺形を描画する
+void draw_polygon_4(const struct quirc_code* code) {
+  for (int i = 0; i < 4; i++) {
+    tft.drawLine(code->corners[i].x, code->corners[i].y, code->corners[(i + 1) % 4].x, code->corners[(i + 1) % 4].y, 0xF800);
+  }
+}
